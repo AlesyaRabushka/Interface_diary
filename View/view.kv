@@ -530,7 +530,7 @@ WindowManager:
             padding:25,100,0,0
             spacing:10
             MDFillRoundFlatButton:
-                text: 'Изменить профиль'
+                text: 'Сохранить изменения'
                 on_press: app.root.current = 'main_menu'
                 #on_release: root.dismiss()
                 text_color: 0, 0, 0, 1
@@ -598,12 +598,83 @@ WindowManager:
             spacing:10
             padding:10,0,10,10
             Button:
+                text: 'Добавить заметку'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'add_record'
+
+            Button:
+                text: 'Изменить заметку'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'edit_record'
+
+            Button:
+                text: 'Удалить заметку'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'remove_record'
+
+            Button:
+                text: 'Вернуться в главное меню'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'main_menu'
+
+<AddRecordScreenView>
+    title: 'Прогресс'
+    name: 'add_record'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Button:
                 text: 'Вернуться в главное меню'
                 background_color:'#c06ef0'
                 background_normal:''
                 on_release: app.root.current = 'main_menu'
 
 
+<EditRecordScreenView>
+    title: 'Прогресс'
+    name: 'edit_record'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Button:
+                text: 'Вернуться в главное меню'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'main_menu'
+
+<RemoveRecordScreenView>
+    title: 'Прогресс'
+    name: 'remove_record'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Button:
+                text: 'Вернуться в главное меню'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'main_menu'
 
 <ProgressScreenView>
     title: 'Прогресс'
