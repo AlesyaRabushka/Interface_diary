@@ -1,0 +1,653 @@
+WindowManager:
+    AuthentificationScreenView:
+    ForgetPasswordScreenView:
+    RegistrationScreenView:
+    MainScreenView:
+    AccountScreenView:
+    EditAccountScreenView:
+    RemoveAccountScreenView:
+    ProgressScreenView:
+    NotificationsScreenView:
+    RecordsScreenView:
+    AddRecordScreenView:
+    EditRecordScreenView:
+    RemoveRecordScreenView:
+    ExitScreenView:
+
+##:import Factory kivy.factory.Factory
+##:import Window kivy.core.window
+
+<MyField@MDTextField>
+    size_hint_x: None
+    width: '200'
+    text_color: "000000"
+
+    required: True
+    helper_text: "This field is required"
+    helper_text_mode: "on_error"
+
+    color_mode: 'custom'
+    line_color_focus: 'c06ef0'
+
+    multiline: False
+    background_color: (1, 1, 1)
+    background_normal:''
+
+
+<AccountScreenView>:
+    name: 'account'
+    title: 'Профиль'
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size: root.width, root.height
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+
+        GridLayout:
+            cols:2
+            rows:8
+            spacing: 20
+            padding:0,10,0,0
+            size_hint_y: None
+            height:260
+            Label:
+                text:"[color=c06ef0]Имя[/color]"
+                markup: True
+                font_size: 15
+#                size_hint_y:None
+                height:30
+                width:30
+        GridLayout:
+            cols:2
+            rows:1
+            spacing: 20
+            padding:0,10,0,0
+            size_hint_y: None
+            MDFillRoundFlatButton:
+                text: 'Забыли пароль?'
+                #disabled: True if root.everything() else False
+#                on_press: Factory.ForgetPasswordScreenView(root.return_system()).open()
+                on_press: app.root.current = 'authentification'
+        #                on_release: root.dismiss()
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+
+<AuthentificationScreenView>
+    name: 'authentification'
+    title: 'Вход'
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size:root.width, root.height
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+           # spacing:10
+        # имя пациента
+            MyField
+                id: pet_name_input
+                hint_text: 'Логин'
+                on_text: root.set_login(self.text)
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+
+            MyField
+                id: pet_name_input
+                hint_text: 'Пароль'
+                on_text: root.set_password(self.text)
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:2
+            rows:2
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+            MDFillRoundFlatButton:
+                text: 'Забыли пароль?'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'forget_password'
+#                on_release: root.dismiss()
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+            MDFillRoundFlatButton:
+                text: 'Войти'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'main_menu'
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+            MDFillRoundFlatButton:
+                text: 'Зарегестрироваться'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'registration'
+
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+
+#
+#
+#<TooltipCheckBox@ToolTip+CheckBox>
+#    tooltip_bg_color: [192/256,110/256,240/256,1]
+#<TooltipButton@ToolTip+Button>
+#    tooltip_bg_color: [192/256,110/256,240/256,1]
+#
+#<DropDownItem@MDDropDownItem>:
+#    Button:
+#        text: 'first'
+#        size_hint_y: None
+#        height: 40
+#        on_release: root.select('item1')
+#
+#
+#
+
+
+<RegistrationScreenView>
+    title: 'Регистрация'
+    name: 'registration'
+    auto_dismiss:False
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size_hint:None,None
+    size:(400,500)
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+           # spacing:10
+        # имя пациента
+            MyField
+                id: pet_name_input
+                hint_text: 'ФИО'
+                on_text: root.set_full_name(self.text)
+
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+           # spacing:10
+        # имя пациента
+            MyField
+                id: pet_name_input
+                hint_text: 'Логин'
+                max_text_length: 20
+                on_text: root.set_login(self.text)
+
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+
+            MyField
+                id: pet_name_input
+                hint_text: 'Адрес электронной почты'
+#                max_text_length: 20
+#                helper_text: 'Буквы латинского алфавита и арабские цифры'
+                on_text: root.set_email(self.text)
+
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+
+            MyField
+                id: pet_name_input
+                hint_text: 'Пароль'
+                max_text_length: 20
+                helper_text: 'Буквы латинского алфавита и арабские цифры'
+                on_text: root.set_password(self.text)
+
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+            MDFillRoundFlatButton:
+                text: 'Зарегистрироваться'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'main_menu'
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+#
+#
+<ForgetPasswordScreenView>:
+    name: 'forget_password'
+    title: 'Восстановление пароля'
+    auto_dismiss:False
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size_hint:None,None
+    size:(400,500)
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+           # spacing:10
+        # имя пациента
+            MyField
+                id: pet_name_input
+                hint_text: 'Логин'
+                max_text_length: 20
+                on_text: root.set_login(self.text)
+
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+
+            MyField
+                id: pet_name_input
+                hint_text: 'Адрес электронной почты'
+#                max_text_length: 20
+#                helper_text: 'Буквы латинского алфавита и арабские цифры'
+                on_text: root.set_email(self.text)
+
+                pos_hint: {"center_x": .30}
+
+        GridLayout:
+            cols:1
+            rows:1
+            size_hint_y:None
+            height:50
+            padding:75,0,10,0
+            MDFillRoundFlatButton:
+                text: 'Восстановить пароль'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'authentification'
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+<AccountScreenView>
+    title: 'Профиль'
+    name: 'account'
+    auto_dismiss:False
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size:(350,450)
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+
+        GridLayout:
+            cols:2
+            rows:8
+            spacing: 20
+            padding:0,10,0,0
+            size_hint_y: None
+            height:260
+            Label:
+                text:"[color=c06ef0]Имя[/color]"
+                markup: True
+                font_size: 15
+#                size_hint_y:None
+                height:30
+                width:30
+
+            Label:
+                color: '070606'
+                id:pet_name
+                markup: True
+                font_size: 15
+                height:20
+                width:30
+
+            Label:
+                text:"[color=c06ef0]Адрес электронной почты[/color]"
+                markup: True
+                font_size: 15
+                height:20
+                width:30
+            Label:
+                color: '070606'
+                id: pet_type
+                markup: True
+                font_size: 15
+                height:30
+                width:30
+
+
+        GridLayout:
+            cols:2
+            rows:1
+            padding:25,100,0,0
+            spacing:10
+            MDFillRoundFlatButton:
+                text: 'Изменить профиль'
+                on_press: app.root.current = 'edit_account'
+                #on_release: root.dismiss()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+#                pos_hint: {"center_x": .5,"center_y":.5}
+            MDFillRoundFlatButton:
+                text: 'Отменить'
+                on_press: app.root.current = 'main_menu'
+                #on_release: root.dismiss()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+#                pos_hint: {"center_x": .5,"center_y":.5}
+#
+#
+<EditAccountScreenView>
+    title: 'Редактировать аккаунт'
+    name: 'edit_account'
+    auto_dismiss:False
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size_hint:None,None
+    size:(350,450)
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+
+        GridLayout:
+            cols:2
+            size_hint_y: .5
+            Label:
+                text: "[color=c06ef0][/color]"
+                markup: True
+                font_size: 20
+
+            Image:
+                source:'call.png'
+#                center_x:self.parent.center_x
+#                center_y:self.parent.center_y
+#                size:"5sp","5sp"
+                size: (5,5)
+        GridLayout:
+            cols:1
+            rows:4
+            padding:65,10,0,0
+            # имя пациента
+            MyField
+                id: hadler_name_input
+                hint_text: 'Имя '
+                on_text: root.set_handler_name(self.text)
+                pos_hint: {"center_x": .46}
+
+        # Номер телефона
+            MyField:
+                id: phone_number_input
+                hint_text: 'Номера телефона'
+                helper_text: '+375-XX-XXX-XX-XX'
+                helper_text_mode: 'on_focus'
+                max_text_length: 17
+                on_text: root.set_phone_number(self.text)
+
+            #Почта
+            MyField:
+                id: email_input
+                hint_text: 'Электронная почта'
+                helper_text:'XXXXXXXXXXX@XXXXXX'
+                helper_text_mode: 'on_focus'
+                #max_text_length: 10
+                on_text: root.set_mail(self.text)
+
+            #Адрес
+            MyField:
+                hint_text: 'Адрес проживания'
+                id: address_input
+                on_text: root.set_address(self.text)
+                multiline: False
+#                pos_hint: {"center_x": .5,"center_y":.5}
+        GridLayout:
+            cols:2
+            rows:1
+            padding:25,100,0,0
+            spacing:10
+            MDFillRoundFlatButton:
+                text: 'Изменить профиль'
+                on_press: app.root.current = 'main_menu'
+                #on_release: root.dismiss()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+#                pos_hint: {"center_x": .5,"center_y":.5}
+            MDFillRoundFlatButton:
+                text: 'Отменить'
+                on_press: app.root.current = 'main_menu'
+                #on_release: root.dismiss()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+#                pos_hint: {"center_x": .5,"center_y":.5}
+#
+#
+#<MyLabel@Label>
+#    pos_hint: {"center_y": .5}
+#
+#
+#
+<MainScreenView>
+    title: 'Ежедневник'
+    name: 'main_menu'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Button:
+                text: 'Профиль'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'account'
+            Button:
+                text: 'Заметки'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'records'
+            Button:
+                text: 'Прогресс'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'progress'
+            Button:
+                text: 'Выход'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'exit'
+
+
+
+<RecordsScreenView>
+    title: 'Заметки'
+    name: 'records'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Button:
+                text: 'Вернуться в главное меню'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'main_menu'
+
+
+
+<ProgressScreenView>
+    title: 'Прогресс'
+    name: 'progress'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Button:
+                text: 'Вернуться в главное меню'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'main_menu'
+
+
+<ExitScreenView>
+    title: 'Выход'
+    name: 'exit'
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+#
+        GridLayout:
+            cols: 2
+            rows: 3
+            size_hint: 1, 0.3
+            spacing:10
+            padding:10,0,10,10
+            Label:
+                text: "[color=c06ef0]Действительно хотите выйти?[/color]"
+                markup: True
+                font_size: 20
+            Button:
+                text: 'Нет'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'main_menu'
+            Button:
+                text: 'Да'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: app.root.current = 'authentification'
