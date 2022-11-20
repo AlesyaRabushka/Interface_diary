@@ -68,22 +68,39 @@ WindowManager:
            # spacing:10
         # имя пациента
             MyField
-                id: pet_name_input
+                id: login
                 hint_text: 'Логин'
+                max_text_len: 20
                 on_text: root.set_login(self.text)
                 pos_hint: {"center_x": .30}
 
         GridLayout:
-            cols:1
+            cols:2
             rows:1
             height:50
             padding:75,0,10,0
 
             MyField
-                id: pet_name_input
+                id: password
                 hint_text: 'Пароль'
+                password: True
+                password_mask: '*'
+                max_text_len: 20
                 on_text: root.set_password(self.text)
                 pos_hint: {"center_x": .30}
+
+            TooltipButton:
+                tooltip_text: 'показать пароль'
+                size_hint:None,None
+                size: "40sp", "40sp"
+                on_press: root.hide_password()
+                background_color:0,0,0,0
+
+                Image:
+                    source:'img/eye-off.png'
+                    center_x:self.parent.center_x
+                    center_y:self.parent.center_y
+                    size:"40sp","40sp"
 
         GridLayout:
             cols:2
@@ -255,7 +272,7 @@ WindowManager:
             padding:75,0,10,0
 
             MyField
-                id: pet_name_input
+                id: email
                 hint_text: 'Адрес электронной почты'
 #                max_text_length: 20
 #                helper_text: 'Буквы латинского алфавита и арабские цифры'
@@ -264,20 +281,35 @@ WindowManager:
                 pos_hint: {"center_x": .30}
 
         GridLayout:
-            cols:1
+            cols:2
             rows:1
             size_hint_y:None
             height:50
             padding:75,0,10,0
 
             MyField
-                id: pet_name_input
+                id: password
                 hint_text: 'Пароль'
+                password: True
+                password_mask:'*'
                 max_text_length: 20
                 helper_text: 'Буквы латинского алфавита и арабские цифры'
                 on_text: root.set_password(self.text)
 
                 pos_hint: {"center_x": .30}
+
+            TooltipButton:
+                tooltip_text: 'показать пароль'
+                size_hint:None,None
+                size: "40sp", "40sp"
+                on_press: root.hide_password()
+                background_color:0,0,0,0
+
+                Image:
+                    source:'img/eye-off.png'
+                    center_x:self.parent.center_x
+                    center_y:self.parent.center_y
+                    size:"40sp","40sp"
 
         GridLayout:
             cols:1
@@ -288,7 +320,8 @@ WindowManager:
             MDFillRoundFlatButton:
                 text: 'Зарегистрироваться'
                 #disabled: True if root.everything() else False
-                on_press: app.root.current = 'records'
+#                on_press: root.registration()
+                on_release: app.root.current = 'records'
                 #on_press: root.info()
                 text_color: 0, 0, 0, 1
                 line_color: 1, 0, 1, 1
@@ -327,7 +360,7 @@ WindowManager:
            # spacing:10
         # имя пациента
             MyField
-                id: pet_name_input
+                id: login
                 hint_text: 'Логин'
                 max_text_length: 20
                 on_text: root.set_login(self.text)
@@ -342,7 +375,7 @@ WindowManager:
             padding:75,0,10,0
 
             MyField
-                id: pet_name_input
+                id: email
                 hint_text: 'Адрес электронной почты'
 #                max_text_length: 20
 #                helper_text: 'Буквы латинского алфавита и арабские цифры'
@@ -522,9 +555,8 @@ WindowManager:
             padding:65,10,0,0
             # имя пациента
             MyField
-                id: hadler_name_input
                 hint_text: 'Имя '
-                on_text: root.set_handler_name(self.text)
+                on_text: root.set_name(self.text)
                 pos_hint: {"center_x": .46}
 
 
@@ -797,29 +829,27 @@ WindowManager:
             padding:65,10,0,0
             # имя пациента
             MyField
-                id: hadler_name_input
+                id: edit_time
                 hint_text: 'Время '
                 helper_text: 'XX:XX - XX:XX'
-                on_text: root.set_handler_name(self.text)
+                on_text: root.set_time(self.text)
                 pos_hint: {"center_x": .46}
 
         # Номер телефона
             MyField:
-                id: phone_number_input
+                id: edit_name
                 hint_text: 'Название'
 #                helper_text: '+375-XX-XXX-XX-XX'
                 helper_text_mode: 'on_focus'
                 max_text_length: 17
-                on_text: root.set_phone_number(self.text)
+                on_text: root.set_name(self.text)
 
             #Почта
             TextInput:
-                id: email_input
+                id: edit_description
                 hint_text: 'Описание'
-#                helper_text:'XXXXXXXXXXX@XXXXXX'
                 helper_text_mode: 'on_focus'
-                #max_text_length: 10
-                on_text: root.set_mail(self.text)
+                on_text: root.set_description(self.text)
 
         GridLayout:
             cols:2
@@ -862,6 +892,7 @@ WindowManager:
                 text: 'Удалить'
                 background_color:'#c06ef0'
                 background_normal:''
+                on_press: root.remove_record()
                 on_release: root.dismiss()
 
             Button:
@@ -869,6 +900,7 @@ WindowManager:
                 background_color:'#c06ef0'
                 background_normal:''
                 on_release: root.dismiss()
+
 
 <ProgressScreenView>
     title: 'Прогресс'
@@ -916,19 +948,6 @@ WindowManager:
                     background_normal:''
                     on_release: app.root.current = 'exit'
 
-#                Button:
-#                    text: 'Изменить заметку'
-#                    background_color:'#c06ef0'
-#                    background_normal:''
-#                    on_release: app.root.current = 'edit_record'
-#
-#                Button:
-#                    text: 'Удалить заметку'
-#                    background_color:'#c06ef0'
-#                    background_normal:''
-#                    on_release: app.root.current = 'remove_record'
-
-#                Button:
 
             GridLayout:
                 cols: 1
@@ -967,13 +986,7 @@ WindowManager:
                     ImageRightWidget:
                         source: "img/dots-vertical.png"
                         on_press: Factory.RecordMenuScreenView().open()
-#
-#                ThreeLineListItem:
-#                bg_color: '#E5CCFF'
-#                    text: "[color=000000]18:00 - 20:55[/color]"
-#                    markup: True
-#                    secondary_text: "[color=000000]Психолог[/color]"
-#                    tertiary_text: "Божественный класс. Кто он и как с ним бороться???"
+
 
 <ExitScreenView>
     title: 'Выход'

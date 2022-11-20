@@ -3,6 +3,8 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.datatables import MDDataTable
 from kivy.metrics import dp
 from kivy.uix.popup import Popup
+from kivymd.uix.textfield import MDTextField
+from kivy.uix.textinput import TextInput
 from kivymd.uix.tooltip import MDTooltip
 from kivy.uix.button import Button
 from kivy.factory import Factory
@@ -55,8 +57,26 @@ class RegistrationScreenView(MDScreen):
         # логин
         self.login = ''
 
+        self.email = ''
+
         # новыйПользователь
         # self.registration = Registration()
+
+    def set_full_name(self, full_name):
+        self.fio = full_name
+    def set_login(self, login):
+        self.login = login
+    def set_password(self, password):
+        self.password = password
+    def set_email(self, email):
+        self.email = email
+
+
+    def hide_password(self):
+        if self.ids.password.password == True:
+            self.ids.password.password = False
+        elif self.ids.password.password == False:
+            self.ids.password.password = True
 
     # сохранить(ФИО)
     def save(self, fio):
@@ -84,14 +104,35 @@ class AuthentificationScreenView(MDScreen):
         self.password = password
 
 
-    def return_system(self):
-        return self.system
+    def hide_password(self):
+        if self.ids.password.password == True:
+            self.ids.password.password = False
+        elif self.ids.password.password == False:
+            self.ids.password.password = True
 
+
+# class StringInput(TextInput):
+#     def __init__(self, **kwargs):
+#         super().__init__(**kwargs)
 #
+#     def insert_text(self, string, from_undo=False):
+#         alphabet = '+*/-=[]{}'
+#         if string not in alphabet:
+#             new_text = self.text + string
+#             print(new_text)
+#             if len(new_text) != 0:
+#                 StringInput.insert_text(self, string, from_undo=from_undo)
+
+
 class ForgetPasswordScreenView(MDScreen, Screen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # self.system = system
+
+    def set_login(self, login):
+        pass
+    def set_email(self, email):
+        pass
 
 class AccountScreenView(MDScreen, Screen):
     def __init__(self, **kwargs):
@@ -113,6 +154,8 @@ class EditAccountScreenView(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         # self.system = system
+    def set_name(self, name):
+        pass
 
 class RecordsScreenView(MDScreen):
     """
@@ -160,10 +203,19 @@ class AddRecordScreenView(Popup, Widget):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    def set_time(self, time):
+        pass
+    def set_record_name(self, name):
+        pass
+    def set_record_description(self, description):
+        pass
+
 
 class RemoveRecordScreenView(Popup, Widget):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        pass
+    def remove_record(self):
         pass
 
 class RemoveAccountScreenView(MDScreen):
@@ -174,6 +226,12 @@ class RemoveAccountScreenView(MDScreen):
 class EditRecordScreenView(Popup, Widget):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        pass
+    def set_name(self, name):
+        pass
+    def set_time(self, time):
+        pass
+    def set_description(self, description):
         pass
 
 
