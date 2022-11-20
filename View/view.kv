@@ -1,5 +1,6 @@
 WindowManager:
     AuthentificationScreenView:
+    SettingsScreenView:
     ForgetPasswordScreenView:
     RegistrationScreenView:
     MainScreenView:
@@ -7,15 +8,16 @@ WindowManager:
     EditAccountScreenView:
     RemoveAccountScreenView:
     ProgressScreenView:
-    NotificationsScreenView:
     RecordsScreenView:
-    AddRecordScreenView:
-    EditRecordScreenView:
-    RemoveRecordScreenView:
+#    AddRecordScreenView:
+#    EditRecordScreenView:
+#    RemoveRecordScreenView:
     ExitScreenView:
+#:import Factory kivy.factory.Factory
+#:import Window kivy.core.window
 
-##:import Factory kivy.factory.Factory
-##:import Window kivy.core.window
+<TooltipButton@ToolTip+Button>
+    tooltip_bg_color: [192/256,110/256,240/256,1]
 
 <MyField@MDTextField>
     size_hint_x: None
@@ -34,60 +36,10 @@ WindowManager:
     background_normal:''
 
 
-<AccountScreenView>:
-    name: 'account'
-    title: 'Профиль'
-    separator_color: (192/256,110/256,240/256,1)
-    background_color:'#a910e6'
-    size: root.width, root.height
-
-    BoxLayout:
-        # background color
-        canvas.before:
-            Color:
-                rgb: (1,1,1)
-            Rectangle:
-                pos: self.pos
-                size: self.size
 
 
 
-        orientation: "vertical"
-        adaptive_size: True
-
-        GridLayout:
-            cols:2
-            rows:8
-            spacing: 20
-            padding:0,10,0,0
-            size_hint_y: None
-            height:260
-            Label:
-                text:"[color=c06ef0]Имя[/color]"
-                markup: True
-                font_size: 15
-#                size_hint_y:None
-                height:30
-                width:30
-        GridLayout:
-            cols:2
-            rows:1
-            spacing: 20
-            padding:0,10,0,0
-            size_hint_y: None
-            MDFillRoundFlatButton:
-                text: 'Забыли пароль?'
-                #disabled: True if root.everything() else False
-#                on_press: Factory.ForgetPasswordScreenView(root.return_system()).open()
-                on_press: app.root.current = 'authentification'
-        #                on_release: root.dismiss()
-                #on_press: root.info()
-                text_color: 0, 0, 0, 1
-                line_color: 1, 0, 1, 1
-                pos_hint: {"center_x": .5,"center_y":.5}
-
-
-<AuthentificationScreenView>
+<AuthentificationScreenView>:
     name: 'authentification'
     title: 'Вход'
     separator_color: (192/256,110/256,240/256,1)
@@ -111,7 +63,6 @@ WindowManager:
         GridLayout:
             cols:1
             rows:1
-            size_hint_y:None
             height:50
             padding:75,0,10,0
            # spacing:10
@@ -125,7 +76,6 @@ WindowManager:
         GridLayout:
             cols:1
             rows:1
-            size_hint_y:None
             height:50
             padding:75,0,10,0
 
@@ -138,7 +88,6 @@ WindowManager:
         GridLayout:
             cols:2
             rows:2
-            size_hint_y:None
             height:50
             padding:75,0,10,0
             MDFillRoundFlatButton:
@@ -154,7 +103,7 @@ WindowManager:
             MDFillRoundFlatButton:
                 text: 'Войти'
                 #disabled: True if root.everything() else False
-                on_press: app.root.current = 'main_menu'
+                on_press: app.root.current = 'records'
                 #on_press: root.info()
                 text_color: 0, 0, 0, 1
                 line_color: 1, 0, 1, 1
@@ -170,6 +119,62 @@ WindowManager:
                 line_color: 1, 0, 1, 1
                 pos_hint: {"center_x": .5,"center_y":.5}
 
+            MDFillRoundFlatButton:
+                text: 'Настройки'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'settings'
+#                on_release: root.dismiss()
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+
+<SettingsScreenView>:
+    name: 'settings'
+
+    separator_color: (192/256,110/256,240/256,1)
+    background_color:'#a910e6'
+    size:root.width, root.height
+
+    BoxLayout:
+        # background color
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+
+        orientation: "vertical"
+        adaptive_size: True
+        GridLayout:
+            cols:2
+            rows:2
+            height:50
+            padding:75,0,10,0
+
+            MDFillRoundFlatButton:
+                text: 'Сообщить об ошибке'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'authentification'
+#                on_release: root.dismiss()
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
+
+            MDFillRoundFlatButton:
+                text: 'Вернуться'
+                #disabled: True if root.everything() else False
+                on_press: app.root.current = 'authentification'
+#                on_release: root.dismiss()
+                #on_press: root.info()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+                pos_hint: {"center_x": .5,"center_y":.5}
 
 #
 #
@@ -189,7 +194,7 @@ WindowManager:
 #
 
 
-<RegistrationScreenView>
+<RegistrationScreenView>:
     title: 'Регистрация'
     name: 'registration'
     auto_dismiss:False
@@ -283,7 +288,7 @@ WindowManager:
             MDFillRoundFlatButton:
                 text: 'Зарегистрироваться'
                 #disabled: True if root.everything() else False
-                on_press: app.root.current = 'main_menu'
+                on_press: app.root.current = 'records'
                 #on_press: root.info()
                 text_color: 0, 0, 0, 1
                 line_color: 1, 0, 1, 1
@@ -393,62 +398,99 @@ WindowManager:
         adaptive_size: True
 
         GridLayout:
-            cols:2
-            rows:8
-            spacing: 20
-            padding:0,10,0,0
-            size_hint_y: None
-            height:260
-            Label:
-                text:"[color=c06ef0]Имя[/color]"
-                markup: True
-                font_size: 15
-#                size_hint_y:None
-                height:30
-                width:30
+            cols: 2
+            GridLayout:
+                cols: 1
+                rows: 5
+                size_hint: .5, 0.3
+                spacing:10
+                padding:10,0,10,10
 
-            Label:
-                color: '070606'
-                id:pet_name
-                markup: True
-                font_size: 15
-                height:20
-                width:30
+                Button:
+                    text: 'Заметки'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_press: app.root.current = 'records'
 
-            Label:
-                text:"[color=c06ef0]Адрес электронной почты[/color]"
-                markup: True
-                font_size: 15
-                height:20
-                width:30
-            Label:
-                color: '070606'
-                id: pet_type
-                markup: True
-                font_size: 15
-                height:30
-                width:30
+                Button:
+                    text: 'Добавить заметку'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_press: Factory.AddRecordScreenView().open()
+#                    on_release: app.root.current = 'add_record'
+
+                Button:
+                    text: 'Профиль'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'account'
+
+                Button:
+                    text: 'Прогресс'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'progress'
+                Button:
+                    text: 'Выход'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'exit'
+
+            GridLayout:
+                cols: 1
+                spacing:10
+                padding:10,0,10,10
+
+                Label:
+                    text:"[color=c06ef0]Имя[/color]"
+                    markup: True
+                    font_size: 15
+    #                size_hint_y:None
+                    height:30
+                    width:30
+
+                Label:
+                    color: '070606'
+                    id:pet_name
+                    markup: True
+                    font_size: 15
+                    height:20
+                    width:30
+
+                Label:
+                    text:"[color=c06ef0]Адрес электронной почты[/color]"
+                    markup: True
+                    font_size: 15
+                    height:20
+                    width:30
+                Label:
+                    color: '070606'
+                    id: pet_type
+                    markup: True
+                    font_size: 15
+                    height:30
+                    width:30
 
 
-        GridLayout:
-            cols:2
-            rows:1
-            padding:25,100,0,0
-            spacing:10
-            MDFillRoundFlatButton:
-                text: 'Изменить профиль'
-                on_press: app.root.current = 'edit_account'
-                #on_release: root.dismiss()
-                text_color: 0, 0, 0, 1
-                line_color: 1, 0, 1, 1
-#                pos_hint: {"center_x": .5,"center_y":.5}
-            MDFillRoundFlatButton:
-                text: 'Отменить'
-                on_press: app.root.current = 'main_menu'
-                #on_release: root.dismiss()
-                text_color: 0, 0, 0, 1
-                line_color: 1, 0, 1, 1
-#                pos_hint: {"center_x": .5,"center_y":.5}
+                GridLayout:
+                    cols:2
+                    rows:1
+                    padding:25,100,0,0
+                    spacing:10
+                    MDFillRoundFlatButton:
+                        text: 'Изменить профиль'
+                        on_press: app.root.current = 'edit_account'
+                        #on_release: root.dismiss()
+                        text_color: 0, 0, 0, 1
+                        line_color: 1, 0, 1, 1
+        #                pos_hint: {"center_x": .5,"center_y":.5}
+                    MDFillRoundFlatButton:
+                        text: 'Отменить'
+                        on_press: app.root.current = 'records'
+                        #on_release: root.dismiss()
+                        text_color: 0, 0, 0, 1
+                        line_color: 1, 0, 1, 1
+        #                pos_hint: {"center_x": .5,"center_y":.5}
 #
 #
 <EditAccountScreenView>
@@ -457,7 +499,7 @@ WindowManager:
     auto_dismiss:False
     separator_color: (192/256,110/256,240/256,1)
     background_color:'#a910e6'
-    size_hint:None,None
+
     size:(350,450)
 
     BoxLayout:
@@ -475,20 +517,6 @@ WindowManager:
         adaptive_size: True
 
         GridLayout:
-            cols:2
-            size_hint_y: .5
-            Label:
-                text: "[color=c06ef0][/color]"
-                markup: True
-                font_size: 20
-
-            Image:
-                source:'call.png'
-#                center_x:self.parent.center_x
-#                center_y:self.parent.center_y
-#                size:"5sp","5sp"
-                size: (5,5)
-        GridLayout:
             cols:1
             rows:4
             padding:65,10,0,0
@@ -499,31 +527,8 @@ WindowManager:
                 on_text: root.set_handler_name(self.text)
                 pos_hint: {"center_x": .46}
 
-        # Номер телефона
-            MyField:
-                id: phone_number_input
-                hint_text: 'Номера телефона'
-                helper_text: '+375-XX-XXX-XX-XX'
-                helper_text_mode: 'on_focus'
-                max_text_length: 17
-                on_text: root.set_phone_number(self.text)
 
-            #Почта
-            MyField:
-                id: email_input
-                hint_text: 'Электронная почта'
-                helper_text:'XXXXXXXXXXX@XXXXXX'
-                helper_text_mode: 'on_focus'
-                #max_text_length: 10
-                on_text: root.set_mail(self.text)
-
-            #Адрес
-            MyField:
-                hint_text: 'Адрес проживания'
-                id: address_input
-                on_text: root.set_address(self.text)
-                multiline: False
-#                pos_hint: {"center_x": .5,"center_y":.5}
+            # вставить картинку профиля сюда
         GridLayout:
             cols:2
             rows:1
@@ -531,14 +536,14 @@ WindowManager:
             spacing:10
             MDFillRoundFlatButton:
                 text: 'Сохранить изменения'
-                on_press: app.root.current = 'main_menu'
+                on_press: app.root.current = 'records'
                 #on_release: root.dismiss()
                 text_color: 0, 0, 0, 1
                 line_color: 1, 0, 1, 1
 #                pos_hint: {"center_x": .5,"center_y":.5}
             MDFillRoundFlatButton:
                 text: 'Отменить'
-                on_press: app.root.current = 'main_menu'
+                on_press: app.root.current = 'account'
                 #on_release: root.dismiss()
                 text_color: 0, 0, 0, 1
                 line_color: 1, 0, 1, 1
@@ -550,7 +555,7 @@ WindowManager:
 #
 #
 #
-<MainScreenView>
+<MainScreenView>:
     title: 'Ежедневник'
     name: 'main_menu'
     BoxLayout:
@@ -571,6 +576,7 @@ WindowManager:
                 text: 'Заметки'
                 background_color:'#c06ef0'
                 background_normal:''
+#                on_press: Factory.AddRecordsScreenView().open()
                 on_release: app.root.current = 'records'
             Button:
                 text: 'Прогресс'
@@ -591,79 +597,261 @@ WindowManager:
     BoxLayout:
         orientation: "vertical"
         adaptive_size: True
+
+        GridLayout:
+            cols:2
+#
+            GridLayout:
+                cols: 1
+                rows: 5
+                size_hint: .5, 0.3
+                spacing:10
+                padding:10,0,10,10
+
+                Button:
+                    text: 'Заметки'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_press: app.root.current = 'records'
+
+                Button:
+                    text: 'Добавить заметку'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_press: Factory.AddRecordScreenView().open()
+#                    on_release: app.root.current = 'add_record'
+
+                Button:
+                    text: 'Профиль'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'account'
+
+                Button:
+                    text: 'Прогресс'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'progress'
+                Button:
+                    text: 'Выход'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'exit'
+
+
+#                Button:
+#                    text: 'Вернуться в главное меню'
+#                    background_color:'#c06ef0'
+#                    background_normal:''
+#                    on_release: app.root.current = 'main_menu'
+
+            GridLayout:
+                cols: 1
+                spacing:10
+                padding:10,0,10,10
+
+
+                ThreeLineRightIconListItem:
+#                    bg_color: '#c06ef0'
+                    text: "[color=000000]10:35 - 11:55[/color]"
+                    secondary_text: "[color=000000]Уйти с политологии[/color]"
+                    markup: True
+                    tertiary_text: "Вместо политологии поесть сендвич в Hotfix"
+
+                    ImageRightWidget:
+                        source: "img/dots-vertical1.png"
+                        on_press: Factory.RecordMenuScreenView().open()
+
+                ThreeLineRightIconListItem:
+                    text: "[color=000000]17:00 - 17:10[/color]"
+                    markup: True
+                    secondary_text: "[color=000000]Учёба[/color]"
+                    tertiary_text: "Алёна хочет сделать лабы"
+                    ImageRightWidget:
+                        source: "img/dots-vertical.png"
+                        on_press: Factory.RecordMenuScreenView().open()
+
+                ThreeLineRightIconListItem:
+                    text: "[color=000000]18:00 - 20:55[/color]"
+                    markup: True
+                    secondary_text: "[color=000000]Психолог[/color]"
+                    tertiary_text: "Божественный класс. Кто он и как с ним бороться???"
+                    ImageRightWidget:
+                        source: "img/dots-vertical.png"
+                        on_press: Factory.RecordMenuScreenView().open()
+
+
+
+<RecordMenuScreenView@Popup>
+    title: ""
+    size_hint:None,None
+    size:(400,200)
+    BoxLayout:
+        orientation: "vertical"
+        adaptive_size: True
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+#        size: 500, 400
 #
         GridLayout:
-            cols: 3
+            cols: 1
             size_hint: 1, 0.3
             spacing:10
             padding:10,0,10,10
-            Button:
-                text: 'Добавить заметку'
-                background_color:'#c06ef0'
-                background_normal:''
-                on_release: app.root.current = 'add_record'
-
-            Button:
-                text: 'Изменить заметку'
-                background_color:'#c06ef0'
-                background_normal:''
-                on_release: app.root.current = 'edit_record'
-
             Button:
                 text: 'Удалить заметку'
                 background_color:'#c06ef0'
                 background_normal:''
-                on_release: app.root.current = 'remove_record'
-
+                on_release: Factory.RemoveRecordScreenView().open()
             Button:
-                text: 'Вернуться в главное меню'
+                text: 'Изменить заметку'
                 background_color:'#c06ef0'
                 background_normal:''
-                on_release: app.root.current = 'main_menu'
+                on_release: Factory.EditRecordScreenView().open()
+            Button:
+                text: 'Назад'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: root.dismiss()
 
-<AddRecordScreenView>
-    title: 'Прогресс'
+
+
+<AddRecordScreenView@Popup>
     name: 'add_record'
     BoxLayout:
         orientation: "vertical"
         adaptive_size: True
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+#        size: 500, 400
 #
         GridLayout:
-            cols: 3
+            cols: 1
             size_hint: 1, 0.3
             spacing:10
             padding:10,0,10,10
+            MyField:
+                id: time_input
+                hint_text: 'Время'
+                helper_text:'XX:XX - XX:XX'
+                helper_text_mode: 'on_focus'
+                #max_text_length: 10
+                on_text: root.set_time(self.text)
+
+            MyField:
+                id: name_input
+                hint_text: 'Название'
+#                    helper_text:'XX:XX - XX:XX'
+                helper_text_mode: 'on_focus'
+                #max_text_length: 10
+                on_text: root.set_record_name(self.text)
+
+            TextInput:
+                id: description_input
+                hint_text: 'Описание'
+#                    helper_text:'XX:XX - XX:XX'
+                helper_text_mode: 'on_focus'
+                #max_text_length: 10
+                on_text: root.set_record_description(self.text)
+
             Button:
-                text: 'Вернуться в главное меню'
+                text:'Добавить заметку'
                 background_color:'#c06ef0'
                 background_normal:''
-                on_release: app.root.current = 'main_menu'
+                on_press: root.dismiss()
+#                on_release: app.root.current = 'records'
+            Button:
+                text:'Назад'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_press: root.dismiss()
+#                on_release: app.root.current = 'records'
 
 
-<EditRecordScreenView>
+<EditRecordScreenView@Popup>
     title: 'Прогресс'
     name: 'edit_record'
+    size_hint: None, None
+    size: (700,400)
     BoxLayout:
         orientation: "vertical"
         adaptive_size: True
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
 #
         GridLayout:
-            cols: 3
-            size_hint: 1, 0.3
-            spacing:10
-            padding:10,0,10,10
-            Button:
-                text: 'Вернуться в главное меню'
-                background_color:'#c06ef0'
-                background_normal:''
-                on_release: app.root.current = 'main_menu'
+            cols:1
+            rows:4
+            padding:65,10,0,0
+            # имя пациента
+            MyField
+                id: hadler_name_input
+                hint_text: 'Время '
+                helper_text: 'XX:XX - XX:XX'
+                on_text: root.set_handler_name(self.text)
+                pos_hint: {"center_x": .46}
 
-<RemoveRecordScreenView>
-    title: 'Прогресс'
+        # Номер телефона
+            MyField:
+                id: phone_number_input
+                hint_text: 'Название'
+#                helper_text: '+375-XX-XXX-XX-XX'
+                helper_text_mode: 'on_focus'
+                max_text_length: 17
+                on_text: root.set_phone_number(self.text)
+
+            #Почта
+            TextInput:
+                id: email_input
+                hint_text: 'Описание'
+#                helper_text:'XXXXXXXXXXX@XXXXXX'
+                helper_text_mode: 'on_focus'
+                #max_text_length: 10
+                on_text: root.set_mail(self.text)
+
+        GridLayout:
+            cols:2
+            rows:1
+            padding:25,100,0,0
+            spacing:10
+            MDFillRoundFlatButton:
+                text: 'Сохранить изменения'
+                on_press: root.dismiss()
+                #on_release: root.dismiss()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+#                pos_hint: {"center_x": .5,"center_y":.5}
+            MDFillRoundFlatButton:
+                text: 'Отменить'
+                on_press: root.dismiss()
+                #on_release: root.dismiss()
+                text_color: 0, 0, 0, 1
+                line_color: 1, 0, 1, 1
+
+<RemoveRecordScreenView@Popup>
+    title: 'Удалить запись'
     name: 'remove_record'
     BoxLayout:
         orientation: "vertical"
         adaptive_size: True
+        canvas.before:
+            Color:
+                rgb: (1,1,1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
 #
         GridLayout:
             cols: 3
@@ -671,10 +859,16 @@ WindowManager:
             spacing:10
             padding:10,0,10,10
             Button:
-                text: 'Вернуться в главное меню'
+                text: 'Удалить'
                 background_color:'#c06ef0'
                 background_normal:''
-                on_release: app.root.current = 'main_menu'
+                on_release: root.dismiss()
+
+            Button:
+                text: 'Назад'
+                background_color:'#c06ef0'
+                background_normal:''
+                on_release: root.dismiss()
 
 <ProgressScreenView>
     title: 'Прогресс'
@@ -682,18 +876,104 @@ WindowManager:
     BoxLayout:
         orientation: "vertical"
         adaptive_size: True
-#
-        GridLayout:
-            cols: 3
-            size_hint: 1, 0.3
-            spacing:10
-            padding:10,0,10,10
-            Button:
-                text: 'Вернуться в главное меню'
-                background_color:'#c06ef0'
-                background_normal:''
-                on_release: app.root.current = 'main_menu'
 
+        GridLayout:
+            cols:2
+#
+            GridLayout:
+                cols: 1
+                rows: 5
+                size_hint: .5, 0.3
+                spacing:10
+                padding:10,0,10,10
+
+                Button:
+                    text: 'Заметки'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_press: app.root.current = 'records'
+
+                Button:
+                    text: 'Добавить заметку'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_press: Factory.AddRecordScreenView().open()
+
+                Button:
+                    text: 'Профиль'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'account'
+
+                Button:
+                    text: 'Прогресс'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'progress'
+                Button:
+                    text: 'Выход'
+                    background_color:'#c06ef0'
+                    background_normal:''
+                    on_release: app.root.current = 'exit'
+
+#                Button:
+#                    text: 'Изменить заметку'
+#                    background_color:'#c06ef0'
+#                    background_normal:''
+#                    on_release: app.root.current = 'edit_record'
+#
+#                Button:
+#                    text: 'Удалить заметку'
+#                    background_color:'#c06ef0'
+#                    background_normal:''
+#                    on_release: app.root.current = 'remove_record'
+
+#                Button:
+
+            GridLayout:
+                cols: 1
+                spacing:10
+                padding:10,0,10,10
+
+
+                ThreeLineRightIconListItem:
+                    bg_color: '#E5CCFF'
+                    text: "[color=000000]15:07 - 19:00[/color]"
+                    secondary_text: "[color=000000]Речица[/color]"
+                    markup: True
+                    on_press:
+                    tertiary_text: "Едем к Алёне отдохнуть и конечно же покушать"
+                    ImageRightWidget:
+                        source: "img/dots-vertical.png"
+                        on_press: Factory.RecordMenuScreenView().open()
+
+                ThreeLineRightIconListItem:
+                    bg_color: '#E5CCFF'
+                    text: "[color=000000]11:30 - 14:00[/color]"
+                    secondary_text: "[color=000000]Курсач[/color]"
+                    markup: True
+                    on_press:
+                    tertiary_text: "Переустановить Ubuntu и поставть OSTIS"
+                    ImageRightWidget:
+                        source: "img/dots-vertical.png"
+                        on_press: Factory.RecordMenuScreenView().open()
+
+                ThreeLineRightIconListItem:
+                    bg_color: '#E5CCFF'
+                    text: "[color=000000]20:00 - 23:40[/color]"
+                    markup: True
+                    secondary_text: "[color=000000]Учёба[/color]"
+                    tertiary_text: "Лабы лабы лабы потому что времени в обрез"
+                    ImageRightWidget:
+                        source: "img/dots-vertical.png"
+                        on_press: Factory.RecordMenuScreenView().open()
+#
+#                ThreeLineListItem:
+#                bg_color: '#E5CCFF'
+#                    text: "[color=000000]18:00 - 20:55[/color]"
+#                    markup: True
+#                    secondary_text: "[color=000000]Психолог[/color]"
+#                    tertiary_text: "Божественный класс. Кто он и как с ним бороться???"
 
 <ExitScreenView>
     title: 'Выход'
@@ -716,7 +996,7 @@ WindowManager:
                 text: 'Нет'
                 background_color:'#c06ef0'
                 background_normal:''
-                on_release: app.root.current = 'main_menu'
+                on_release: app.root.current = 'records'
             Button:
                 text: 'Да'
                 background_color:'#c06ef0'
