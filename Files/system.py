@@ -1,4 +1,4 @@
-from View.view import *
+from Files.view import *
 
 class System:
     """
@@ -7,25 +7,25 @@ class System:
     def __init__(self):
         pass
 
-    #
+    # авторизация()
     def authorization(self):
         pass
-    #
+    # открыть_меню()
     def open_menu(self):
         pass
-    #
+    # добавитьНовогоПользователя(string Имя)
     def add_new_user(self, name : str):
         pass
-    #
+    # добасвитьНовуюЗапись()
     def add_new_record(self):
         pass
-    #
+    # удалитьЗапись()
     def remove_record(self):
         pass
-    #
+    #редактироватьЗапись(string дата, string время, string название)
     def edit_record(self, date: str, time:str,name:str):
         pass
-    #
+    # обновитьЗапись()
     def update_record(self):
         pass
 
@@ -35,9 +35,9 @@ class User:
     Пользователь
     """
     def __init__(self):
-        # имя
+        # string имя
         self.name = ''
-        # фотография
+        # string фотография
         self.photo_path = ''
 
     # ДобавитьЗапись(Запись запись)
@@ -59,13 +59,13 @@ class Registration:
     Регистрация
     """
     def __init__(self):
-        # ФИО
+        # string ФИО
         self.fio = ''
-        # пароль
+        # string пароль
         self.password = ''
-        # логин
+        # string логин
         self.login = ''
-        # фотография
+        # string фотография
         self.photo_path = ''
 
     # регистрация()
@@ -81,6 +81,6 @@ class Validate:
         # списокЛогинов
         self.login_list = Validate()
 
-    # проверка(string логин, string пароль)
+    # bool проверка(string логин, string пароль)
     def validate(self, login:str, password:str)-> bool:
         pass

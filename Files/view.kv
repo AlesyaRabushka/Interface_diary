@@ -110,7 +110,9 @@ WindowManager:
             MDFillRoundFlatButton:
                 text: 'Забыли пароль?'
                 #disabled: True if root.everything() else False
-                on_press: app.root.current = 'forget_password'
+                on_press:
+#                    app.root.transition.direction = 'no_transition'
+                    app.root.current = 'forget_password'
 #                on_release: root.dismiss()
                 #on_press: root.info()
                 text_color: 0, 0, 0, 1
