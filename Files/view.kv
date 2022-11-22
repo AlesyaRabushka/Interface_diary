@@ -13,6 +13,9 @@ WindowManager:
 #    EditRecordScreenView:
 #    RemoveRecordScreenView:
     ExitScreenView:
+
+
+
 #:import Factory kivy.factory.Factory
 #:import Window kivy.core.window
 
@@ -431,6 +434,15 @@ WindowManager:
 
         orientation: "vertical"
         adaptive_size: True
+        MDTopAppBar:
+            title: 'Menu'
+            height: 20
+            size_hint_y:.2
+            md_bg_color: 68/256,182/256,235/256,1
+            use_overflow: True
+            right_action_items:
+                [["plus", lambda x: root.add_record(), "Добавить"],
+                ["exit-to-app", lambda x : setattr(root.manager, 'current', 'exit'), "Выход"]]
 
         GridLayout:
             cols: 2
@@ -446,13 +458,13 @@ WindowManager:
                     background_color:'#c06ef0'
                     background_normal:''
                     on_press: app.root.current = 'records'
-
-                Button:
-                    text: 'Добавить заметку'
-                    background_color:'#c06ef0'
-                    background_normal:''
-                    on_press: Factory.AddRecordScreenView().open()
-#                    on_release: app.root.current = 'add_record'
+#
+#                Button:
+#                    text: 'Добавить заметку'
+#                    background_color:'#c06ef0'
+#                    background_normal:''
+#                    on_press: Factory.AddRecordScreenView().open()
+##                    on_release: app.root.current = 'add_record'
 
                 Button:
                     text: 'Профиль'
@@ -632,8 +644,21 @@ WindowManager:
         orientation: "vertical"
         adaptive_size: True
 
+        MDTopAppBar:
+            title: 'Menu'
+            height: 20
+            size_hint_y:.2
+            md_bg_color: 68/256,182/256,235/256,1
+            use_overflow: True
+            right_action_items:
+                [["plus", lambda x: root.add_record(), "Добавить"],
+                ["exit-to-app", lambda x : setattr(root.manager, 'current', 'exit'), "Выход"]]
+
+
+
         GridLayout:
             cols:2
+
 #
             GridLayout:
                 cols: 1
@@ -647,13 +672,13 @@ WindowManager:
                     background_color:'#c06ef0'
                     background_normal:''
                     on_press: app.root.current = 'records'
-
-                Button:
-                    text: 'Добавить заметку'
-                    background_color:'#c06ef0'
-                    background_normal:''
-                    on_press: Factory.AddRecordScreenView().open()
-#                    on_release: app.root.current = 'add_record'
+#
+#                Button:
+#                    text: 'Добавить заметку'
+#                    background_color:'#c06ef0'
+#                    background_normal:''
+#                    on_press: Factory.AddRecordScreenView().open()
+##                    on_release: app.root.current = 'add_record'
 
                 Button:
                     text: 'Профиль'
@@ -683,7 +708,6 @@ WindowManager:
                 cols: 1
                 spacing:10
                 padding:10,0,10,10
-
 
                 ThreeLineRightIconListItem:
 #                    bg_color: '#c06ef0'
@@ -909,7 +933,16 @@ WindowManager:
     name: 'progress'
     BoxLayout:
         orientation: "vertical"
-        adaptive_size: True
+        adaptive_size:
+        MDTopAppBar:
+            title: 'Menu'
+            height: 20
+            size_hint_y:.2
+            md_bg_color: 68/256,182/256,235/256,1
+            use_overflow: True
+            right_action_items:
+                [["plus", lambda x: root.add_record(), "Добавить"],
+                ["exit-to-app", lambda x : root.exit(), "Выход"]]
 
         GridLayout:
             cols:2
@@ -927,11 +960,11 @@ WindowManager:
                     background_normal:''
                     on_press: app.root.current = 'records'
 
-                Button:
-                    text: 'Добавить заметку'
-                    background_color:'#c06ef0'
-                    background_normal:''
-                    on_press: Factory.AddRecordScreenView().open()
+#                Button:
+#                    text: 'Добавить заметку'
+#                    background_color:'#c06ef0'
+#                    background_normal:''
+#                    on_press: Factory.AddRecordScreenView().open()
 
                 Button:
                     text: 'Профиль'

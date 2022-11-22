@@ -3,14 +3,22 @@ import os
 from kivy.lang import Builder
 from Files.system import System
 
+class Application:
+    def __init__(self):
+        self.system = System()
+
 
 class DiaryApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.system = System()
+        self.application = Application()
+
+
 
     def build(self):
         return Builder.load_file(os.path.join(os.path.dirname(__file__), "Files/view.kv"))
+
+
 
 if __name__ == '__main__':
     DiaryApp().run()

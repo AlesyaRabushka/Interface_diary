@@ -137,6 +137,10 @@ class RecordsScreenView(MDScreen):
     def save(self):
         pass
 
+    def add_record(self):
+        Factory.AddRecordScreenView().open()
+
+
 
 class SettingsScreenView(MDScreen):
     def __init__(self, **kwargs):

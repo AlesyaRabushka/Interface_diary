@@ -1,11 +1,14 @@
+import datetime
 from Files.view import *
+
 
 class System:
     """
     Система
     """
     def __init__(self):
-        pass
+        self.current_record = Records()
+        self.user = User()
 
     # авторизация()
     def authorization(self):
@@ -27,6 +30,31 @@ class System:
         pass
     # обновитьЗапись()
     def update_record(self):
+        pass
+    # Выход()
+    def exit(self):
+        pass
+
+
+class Records:
+    """
+    Задачи
+    """
+    def __init__(self):
+        # string название
+        self.name = ''
+        # date дата
+        self.date = datetime.date.today()
+        # string время
+        self.time = ''
+        # string идентификатор
+        self.id = ''
+
+    # сохранить()
+    def save(self):
+        pass
+    # показать()
+    def show(self):
         pass
 
 
@@ -51,6 +79,9 @@ class User:
         pass
     # ПросмотретьЗапись(Запись запись)
     def read_record(self, record):
+        pass
+    # Выйти()
+    def exit(self):
         pass
 
 
@@ -79,7 +110,7 @@ class Validate:
     """
     def __init__(self):
         # списокЛогинов
-        self.login_list = Validate()
+        self.login_list = Validate()#????
 
     # bool проверка(string логин, string пароль)
     def validate(self, login:str, password:str)-> bool:
