@@ -441,7 +441,7 @@ WindowManager:
             md_bg_color: 68/256,182/256,235/256,1
             use_overflow: True
             right_action_items:
-                [["plus", lambda x: root.add_record(), "Добавить"],
+                [["plus", lambda x: root.add_record(), "Добавить заметку"],
                 ["exit-to-app", lambda x : setattr(root.manager, 'current', 'exit'), "Выход"]]
 
         GridLayout:
@@ -651,7 +651,7 @@ WindowManager:
             md_bg_color: 68/256,182/256,235/256,1
             use_overflow: True
             right_action_items:
-                [["plus", lambda x: root.add_record(), "Добавить"],
+                [["plus", lambda x: root.add_record(), "Добавить заметку"],
                 ["exit-to-app", lambda x : setattr(root.manager, 'current', 'exit'), "Выход"]]
 
 
@@ -941,8 +941,8 @@ WindowManager:
             md_bg_color: 68/256,182/256,235/256,1
             use_overflow: True
             right_action_items:
-                [["plus", lambda x: root.add_record(), "Добавить"],
-                ["exit-to-app", lambda x : root.exit(), "Выход"]]
+                [["plus", lambda x: root.add_record(), "Добавить заметку"],
+                ["exit-to-app", lambda x : setattr(root.manager, 'current', 'exit'), "Выход"]]
 
         GridLayout:
             cols:2

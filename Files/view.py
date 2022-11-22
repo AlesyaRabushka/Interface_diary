@@ -116,6 +116,9 @@ class AccountScreenView(MDScreen, Screen):
         # модель
         # self.model = User()
 
+    def add_record(self):
+        Factory.AddRecordScreenView().open()
+
 
 class EditAccountScreenView(MDScreen):
     def __init__(self, **kwargs):
@@ -151,6 +154,9 @@ class ProgressScreenView(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         pass
+
+    def add_record(self):
+        Factory.AddRecordScreenView().open()
 
 class NotificationsScreenView(Popup, Widget):
     def __init__(self, **kwargs):
