@@ -88,7 +88,8 @@ WindowManager:
                     source:'img/people.jpg'
                     size: (467,600)
         GridLayout:
-
+            size_hint: None, None
+            height: 20
             cols:1
             padding:650,10,100,20
             MDRoundFlatButton:
@@ -174,9 +175,12 @@ WindowManager:
             cols:1
             rows:2
             spacing:10
-            padding:570,20,0,0
+            padding:570,10,0,20
             MDFillRoundFlatButton:
-                text: '           Войти             '
+                text: '[color=#808080]           Войти             [/color]'
+                markup: True
+                background_normal:''
+                md_bg_color: '#A9E4F3'
                 on_press: app.root.current = 'records'
                 separator_color: (0/256,255/256,255/256,1)
                 pos_hint: {"center_x": .5,"center_y":.5}
@@ -184,26 +188,27 @@ WindowManager:
         GridLayout:
             cols:1
             rows:3
-            padding:615,30,0,0
+            padding:470,45,0,0
 
             Label:
-                text: "[color=66B2FF]            Хотите создать аккаунт?[/color]"
+                text: "[color=#062B83]Хотите создать аккаунт?[/color]"
                 markup: True
-                font_size: 12
-                size_hint: None, None
-                height:10
-                width:20
+                font_size: 15
+#                size_hint: None, None
+#                height:10
+#                width:0
                 pos_hint: {"center_x": .5}
 
         GridLayout:
             cols:1
 #            spacing:10
-            padding:565,0,20,220
+            padding:560,0,20,220
 
             MDRoundFlatButton:
-                text: '[u]Зарегестрироваться[/u]'
+                text: '[u]Зарегистрировать[/u]'
                 #disabled: True if root.everything() else False
                 on_press: app.root.current = 'registration'
+                markup: True
                 background_color:'#CCFFFF'
                 line_color: 1,1,1,1
                 background_normal:''
@@ -226,6 +231,25 @@ WindowManager:
             Rectangle:
                 pos: self.pos
                 size: self.size
+
+        GridLayout:
+            cols:1
+            rows:1
+            padding:20,10,10,50
+            spacing:10
+            size_hint:None,None
+            height:20
+            TooltipButton:
+                tooltip_text: 'вернуться'
+                size_hint:None,None
+                size: "40sp", "40sp"
+                background_color:0,0,0,0
+                on_press: app.root.current = 'authentification'
+                Image:
+                    source:'img/arrow-left-circle.png'
+                    center_x:self.parent.center_x
+                    center_y:self.parent.center_y
+                    size:"40sp","40sp"
 
 
 
@@ -250,10 +274,7 @@ WindowManager:
 
             MDRoundFlatButton:
                 text: 'Сообщить об ошибке'
-                #disabled: True if root.everything() else False
                 on_press: app.root.current = 'authentification'
-#                on_release: root.dismiss()
-                #on_press: root.info()
                 background_color:'#CCFFFF'
                 background_normal:''
                 separator_color: (0/256,255/256,255/256,1)#
@@ -262,11 +283,8 @@ WindowManager:
 
 
             MDRoundFlatButton:
-                text: '           Вернуться            '
-                #disabled: True if root.everything() else False
+                text: '      Оставить отзыв      '
                 on_press: app.root.current = 'authentification'
-#                on_release: root.dismiss()
-                #on_press: root.info()
                 background_color:'#CCFFFF'
                 background_normal:''
                 separator_color: (0/256,255/256,255/256,1)#
@@ -288,15 +306,28 @@ WindowManager:
         adaptive_size: True
         GridLayout:
             cols:1
-            rows:3
+            rows:1
             padding:20,10,10,50
             spacing:10
-            MDRoundFlatButton:
-                text: 'Вернуться'
+            size_hint:None,None
+            height:20
+            TooltipButton:
+                tooltip_text: 'вернуться'
+                size_hint:None,None
+                size: "40sp", "40sp"
+                background_color:0,0,0,0
                 on_press: app.root.current = 'authentification'
-                background_color:'#CCFFFF'
-                background_normal:''
-                separator_color: (0/256,255/256,255/256,1)#
+                Image:
+                    source:'img/arrow-left-circle.png'
+                    center_x:self.parent.center_x
+                    center_y:self.parent.center_y
+                    size:"40sp","40sp"
+#            MDRoundFlatButton:
+#                text: 'Вернуться'
+#                on_press: app.root.current = 'authentification'
+#                background_color:'#CCFFFF'
+#                background_normal:''
+#                separator_color: (0/256,255/256,255/256,1)#
         GridLayout:
             cols:1
             rows:3
@@ -313,18 +344,14 @@ WindowManager:
             rows:3
             spacing: 40
             padding:310,0,300,0
-        # имя пациента
             MyField
-                id: pet_name_input
                 hint_text: 'ФИО'
                 line_color_focus: [132/256,233/256,250/256,1]
                 helper_text: 'Введите Ваше ФИО полностью'
                 helper_text_mode: 'persistent'
                 on_text: root.set_full_name(self.text)
 
-        # имя пациента
             MyField
-                id: pet_name_input
                 hint_text: 'Логин'
                 line_color_focus: [132/256,233/256,250/256,1]
                 helper_text: 'Придумайте логин не длинее 20 символов'
@@ -336,7 +363,7 @@ WindowManager:
             MyField
                 id: email
                 line_color_focus: [132/256,233/256,250/256,1]
-                hint_text: 'Адрес эл-ой почты'
+                hint_text: 'Электронная почта'
                 helper_text_mode: 'persistent'
                 helper_text: 'user@gmail.com'
                 on_text: root.set_email(self.text)
@@ -364,6 +391,7 @@ WindowManager:
                 on_press: root.hide_password()
                 background_color:0,0,0,0
 
+
                 Image:
                     id: image_registration
                     source:'img/eye.png'
@@ -374,12 +402,13 @@ WindowManager:
         GridLayout:
             cols:1
             rows:1
-            padding:330,120,200,50
+            padding:315,120,200,50
 #            spacing:10
-            MDRoundFlatButton:
-                text: 'Зарегистрироваться'
+            MDFillRoundFlatButton:
+                text: '[color=#808080]    Зарегистрироваться    [/color]'
                 on_release: app.root.current = 'records'
-                background_color:'#CCFFFF'
+                md_bg_color: '#A9E4F3'
+
                 background_normal:''
                 separator_color: (0/256,255/256,255/256,1)#
         GridLayout:
@@ -444,7 +473,7 @@ WindowManager:
 
             MyField
                 id: email
-                hint_text: 'Адрес электронной почты'
+                hint_text: 'Электронная почта'
                 line_color_focus: [132/256,233/256,250/256,1]
                 helper_text: 'user@gmail.com'
                 helper_text_mode: 'persistent'
@@ -485,7 +514,6 @@ WindowManager:
 #
 
 <AccountScreenView>
-    title: 'Профиль'
     name: 'account'
     auto_dismiss:False
     separator_color: (192/256,110/256,240/256,1)
@@ -509,7 +537,7 @@ WindowManager:
             elevation: 2
             size_hint_y:None
             md_bg_color: 132/256,233/256,250/256,1
-            use_overflow: True
+#            use_overflow: True
             right_action_items:
                 [["plus", lambda x: root.add_record(), "Добавить заметку"],
                 ["exit-to-app", lambda x : setattr(root.manager, 'current', 'exit'), "Выход"]]
@@ -517,6 +545,7 @@ WindowManager:
         GridLayout:
             cols:2
             padding: 20,20,20,20
+
             GridLayout:
                 cols: 1
                 rows: 4
@@ -552,7 +581,8 @@ WindowManager:
             GridLayout:
                 cols:2
                 rows: 1
-                padding:50,20,0,0
+                padding:50,20,50,0
+
                 Image:
                     source:'img/woom.jpg'
                     size: "40sp", "100sp"
@@ -566,8 +596,8 @@ WindowManager:
         GridLayout:
             cols: 2
             rows:2
-            spacing:30
-            padding:120,0,0,50
+#            spacing:30
+            padding:220,0,0,50
             Label:
                 text:"[color=000000]Адрес электронной почты:[/color]"
                 markup: True
@@ -578,22 +608,18 @@ WindowManager:
                 text: '[color=000000]martamor@gmail.com[/color]'
                 markup: True
                 font_size: 15
-                height:30
-                width:30
+#                height:30
+#                width:30
 
 
             GridLayout:
-                cols: 2
+                cols: 1
                 rows: 1
-                padding:120,0,0,200
-                spacing: 50
+                padding:120,50,0,200
 
-                MDRoundFlatButton:
+                MDFillRoundFlatButton:
                     text: 'Изменить профиль'
                     on_press: app.root.current = 'edit_account'
-                MDRoundFlatButton:
-                    text: '       Отменить          '
-                    on_press: app.root.current = 'records'
 
             Label:
                 text:''
@@ -713,7 +739,7 @@ WindowManager:
                 cols: 1
                 rows:4
                 spacing:10
-                padding:10,0,10,10
+                padding:40,0,40,10
 
                 Label:
                     text:"[color=000000]Заметки[/color]"
@@ -1034,7 +1060,7 @@ WindowManager:
                 cols: 1
                 rows:4
                 spacing:10
-                padding:10,0,10,10
+                padding:40,0,40,10
 
                 Label:
                     text:"[color=000000]Прогресс[/color]"
