@@ -1,5 +1,23 @@
 import datetime
+from kivy.properties import ObjectProperty
 from Files.view import *
+
+class Application:
+    def __init__(self):
+        self.system = System()
+
+        user = User()
+        self.system.set_user(user)
+        self.system.add_new_user(user.name)
+
+        record = Records()
+        self.system.set_current_record(record)
+        self.system.add_new_record(record.name, record.date, record.time, record.id)
+
+        validation = Validate()
+
+
+
 
 
 class System:
@@ -7,8 +25,14 @@ class System:
     Система
     """
     def __init__(self):
-        self.current_record = Records()
-        self.user = User()
+        self.registration = Registration()
+
+    def set_user(self, user):
+        self.user = user
+    def set_current_record(self, record):
+        self.current_record = record
+
+
 
     # авторизация()
     def authorization(self):
@@ -20,7 +44,7 @@ class System:
     def add_new_user(self, name : str):
         pass
     # добасвитьНовуюЗапись()
-    def add_new_record(self):
+    def add_new_record(self, name: str, date: datetime, time : str, id : str):
         pass
     # удалитьЗапись()
     def remove_record(self):
@@ -110,7 +134,8 @@ class Validate:
     """
     def __init__(self):
         # списокЛогинов
-        self.login_list = Validate()#????
+        self.login_list = []
+
 
     # bool проверка(string логин, string пароль)
     def validate(self, login:str, password:str)-> bool:

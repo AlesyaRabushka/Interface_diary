@@ -1,5 +1,4 @@
 from kivymd.uix.screen import MDScreen
-#from Model.system import User, Registration, Validate
 from kivymd.uix.datatables import MDDataTable
 from kivy.metrics import dp
 from kivy.uix.popup import Popup
@@ -9,6 +8,7 @@ from kivymd.uix.tooltip import MDTooltip
 from kivy.uix.button import Button
 from kivy.factory import Factory
 from kivy.uix.widget import Widget
+# from kivymd.uix.textfield import MDTextFieldRound
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.screenmanager import NoTransition
 
@@ -53,8 +53,10 @@ class RegistrationScreenView(MDScreen):
     def hide_password(self):
         if self.ids.password.password == True:
             self.ids.password.password = False
+            self.ids.image_registration.source = 'img\eye-off.png'
         elif self.ids.password.password == False:
             self.ids.password.password = True
+            self.ids.image_registration.source = 'img\eye.png'
 
     # сохранить(ФИО)
     def save(self, fio):
@@ -64,8 +66,8 @@ class RegistrationScreenView(MDScreen):
         pass
 
 
-#
-class AuthentificationScreenView(MDScreen):
+
+class AuthenticationScreenView(MDScreen):
     """
     ОкноВход
     """
@@ -80,13 +82,16 @@ class AuthentificationScreenView(MDScreen):
         self.login = login
     def set_password(self, password):
         self.password = password
-
+    def change(self):
+        self.ids.button_forget.text='[color=66B2FF]]Восстановить пароль[/color]'
 
     def hide_password(self):
         if self.ids.password.password == True:
             self.ids.password.password = False
+            self.ids.image_authentication.source = 'img/eye-off.png'
         elif self.ids.password.password == False:
             self.ids.password.password = True
+            self.ids.image_authentication.source = 'img/eye.png'
 
 
 

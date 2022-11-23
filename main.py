@@ -1,11 +1,9 @@
 from kivymd.app import MDApp
 import os
 from kivy.lang import Builder
-from Files.system import System
+from Files.system import System, Application
 
-class Application:
-    def __init__(self):
-        self.system = System()
+
 
 
 class DiaryApp(MDApp):
