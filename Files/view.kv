@@ -26,6 +26,8 @@ WindowManager:
     size_hint_x: None
     width: '200'
     text_color: "000000"
+    mode: "round"
+
 
 #    required: True
     helper_text: "This field is required"
@@ -119,6 +121,7 @@ WindowManager:
                 id: login
                 hint_text: 'Логин'
                 max_text_length: 20
+                line_color_focus: [132/256,233/256,250/256,1]
                 on_text: root.set_login(self.text)
                 pos_hint: {"center_x": .30}
 
@@ -134,6 +137,7 @@ WindowManager:
                 password_mask: '*'
                 max_text_length: 20
                 helper_text_mode: 'on_focus'
+                line_color_focus: [132/256,233/256,250/256,1]
                 on_focus: root.set_password(self.text)
                 pos_hint: {"center_x": .30}
 
@@ -307,43 +311,48 @@ WindowManager:
         GridLayout:
             cols:1
             rows:3
-            padding:310,0,200,0
+            spacing: 40
+            padding:310,0,300,0
         # имя пациента
             MyField
                 id: pet_name_input
                 hint_text: 'ФИО'
+                line_color_focus: [132/256,233/256,250/256,1]
                 helper_text: 'Введите Ваше ФИО полностью'
+                helper_text_mode: 'persistent'
                 on_text: root.set_full_name(self.text)
 
         # имя пациента
             MyField
                 id: pet_name_input
                 hint_text: 'Логин'
-                helper_text: 'Придумайте логин не длиннее 20 символов'
+                line_color_focus: [132/256,233/256,250/256,1]
+                helper_text: 'Придумайте логин не длинее 20 символов'
+                helper_text_mode: 'persistent'
                 max_text_length: 20
                 on_text: root.set_login(self.text)
 
 
             MyField
                 id: email
-                hint_text: 'Адрес электронной почты'
+                line_color_focus: [132/256,233/256,250/256,1]
+                hint_text: 'Адрес эл-ой почты'
                 helper_text_mode: 'persistent'
                 helper_text: 'user@gmail.com'
-#                max_text_length: 20
-#                helper_text: 'Буквы латинского алфавита и арабские цифры'
                 on_text: root.set_email(self.text)
 
         GridLayout:
             cols:2
             rows:1
-            padding:310,90,200,50
-            spacing:10
+            padding:310,120,200,50
+
             MyField
                 id: password
                 hint_text: 'Пароль'
                 password: True
                 password_mask:'*'
                 max_text_length: 20
+                line_color_focus: [132/256,233/256,250/256,1]
                 helper_text: 'Буквы латинского алфавита и арабские цифры'
                 on_text: root.set_password(self.text)
 
@@ -431,10 +440,12 @@ WindowManager:
                 hint_text: 'Логин'
                 max_text_length: 20
                 on_text: root.set_login(self.text)
+                line_color_focus: [132/256,233/256,250/256,1]
 
             MyField
                 id: email
                 hint_text: 'Адрес электронной почты'
+                line_color_focus: [132/256,233/256,250/256,1]
                 helper_text: 'user@gmail.com'
                 helper_text_mode: 'persistent'
                 on_text: root.set_email(self.text)
@@ -517,20 +528,23 @@ WindowManager:
                     source:'img/woom.jpg'
                     size: (100,80)
 
-                MDRoundFlatButton:
-                    text: 'Заметки'
+                MDRoundFlatIconButton:
+                    text: 'Все заметки'
+                    icon: "book-settings-outline"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_press: app.root.current = 'records'
 
-                MDRoundFlatButton:
-                    text: 'Профиль'
+                MDRoundFlatIconButton:
+                    text: '  Профиль    '
+                    icon: "account"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_release: app.root.current = 'account'
 
-                MDRoundFlatButton:
-                    text: 'Прогресс'
+                MDRoundFlatIconButton:
+                    text: '  Прогресс   '
+                    icon: "progress-star"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_release: app.root.current = 'progress'
@@ -615,6 +629,7 @@ WindowManager:
                 hint_text: 'Имя '
                 on_text: root.set_name(self.text)
                 pos_hint: {"center_x": .46}
+                line_color_focus: [132/256,233/256,250/256,1]
 
         GridLayout:
             cols: 1
@@ -672,20 +687,23 @@ WindowManager:
                     source:'img/woom.jpg'
                     size: (100,80)
 
-                MDRoundFlatButton:
-                    text: 'Заметки'
+                MDRoundFlatIconButton:
+                    text: 'Все заметки'
+                    icon: "book-settings-outline"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_press: app.root.current = 'records'
 
-                MDRoundFlatButton:
-                    text: 'Профиль'
+                MDRoundFlatIconButton:
+                    text: '  Профиль    '
+                    icon: "account"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_release: app.root.current = 'account'
 
-                MDRoundFlatButton:
-                    text: 'Прогресс'
+                MDRoundFlatIconButton:
+                    text: '  Прогресс   '
+                    icon: "progress-star"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_release: app.root.current = 'progress'
@@ -811,6 +829,7 @@ WindowManager:
             cols:1
             rows:2
             height:30
+            spacing: 40
             padding:90,80,0,0
             MyField:
                 id: time_input
@@ -818,12 +837,14 @@ WindowManager:
                 helper_text:'XX:XX - XX:XX'
                 helper_text_mode: 'persistent'
                 on_text: root.set_time(self.text)
+                line_color_focus: [132/256,233/256,250/256,1]
 
             MyField:
                 id: name_input
                 hint_text: 'Название'
                 helper_text_mode: 'on_focus'
                 on_text: root.set_record_name(self.text)
+                line_color_focus: [132/256,233/256,250/256,1]
         GridLayout:
             cols:1
             padding:90,0,0,0
@@ -872,7 +893,7 @@ WindowManager:
         GridLayout:
             cols:1
             rows:3
-            spacing:5
+            spacing:40
             padding:150,20,0,0
 
             MyField
@@ -882,6 +903,7 @@ WindowManager:
                 helper_text_mode: 'persistent'
                 on_text: root.set_time(self.text)
                 pos_hint: {"center_x": .46}
+                line_color_focus: [132/256,233/256,250/256,1]
 
             MyField:
                 id: edit_name
@@ -889,6 +911,7 @@ WindowManager:
                 helper_text_mode: 'on_focus'
                 max_text_length: 17
                 on_text: root.set_name(self.text)
+                line_color_focus: [132/256,233/256,250/256,1]
 
             TextInput:
                 id: edit_description
@@ -986,20 +1009,23 @@ WindowManager:
                     size: (100,80)
 
 
-                MDRoundFlatButton:
-                    text: 'Заметки'
+                MDRoundFlatIconButton:
+                    text: 'Все заметки'
+                    icon: "book-settings-outline"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_press: app.root.current = 'records'
 
-                MDRoundFlatButton:
-                    text: 'Профиль'
+                MDRoundFlatIconButton:
+                    text: '  Профиль    '
+                    icon: "account"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_release: app.root.current = 'account'
 
-                MDRoundFlatButton:
-                    text: 'Прогресс'
+                MDRoundFlatIconButton:
+                    text: '  Прогресс   '
+                    icon: "progress-star"
                     background_color:'#c06ef0'
                     background_normal:''
                     on_release: app.root.current = 'progress'
